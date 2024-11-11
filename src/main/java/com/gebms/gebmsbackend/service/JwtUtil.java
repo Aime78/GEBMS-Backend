@@ -39,6 +39,4 @@ public class JwtUtil {
             throw new RuntimeException(e);
         }
     }
-
-
 }
