@@ -6,13 +6,10 @@ import com.gebms.gebmsbackend.repository.UserRepository;
 import com.gebms.gebmsbackend.service.JwtUtil;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Optional;
 
@@ -36,7 +33,9 @@ public class AuthController  {
         user.setFirstName(userDetails.getFirstName());
         user.setLastName(userDetails.getLastName());
         user.setEmail(userDetails.getEmail());
-        user.setPassword(passwordEncoder.encode(userDetails.getPassword()));  // Hash the password
+        user.setPhoneNumbers(userDetails.getPhoneNumbers());
+        user.setRole(userDetails.getRole());
+        user.setPassword(passwordEncoder.encode(userDetails.getPassword()));
         userRepository.save(user);
 
         return "User registered successfully!";
@@ -90,9 +89,7 @@ public class AuthController  {
         }
     }
 
-
     // Logout User
-
     @PostMapping("/auth/logout")
     public String logout(HttpSession session) {
         // Invalidate the session if it exists
@@ -100,6 +97,5 @@ public class AuthController  {
             session.invalidate();
         }
         return "Logout sucessfully!";
-//        return ResponseEntity.ok("Logged out successfully");
     }
 }

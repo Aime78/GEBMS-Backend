@@ -19,23 +19,6 @@ public class ExpenditureController {
     public ExpenditureController(ExpenditureRepository expenditureRepository) {
         this.expenditureRepository = expenditureRepository;
     }
-//
-//    @GetMapping("/expenditure")
-//    List<Expenditure> expenditureList(@RequestParam(required = false) String department) {
-//        if (department != null && !department.isEmpty()) {
-//            List<Expenditure> filteredExpenditures = expenditureRepository.findByDepartmentIgnoreCase(department);
-//            logger.info("Fetching expenditures for department: {}", department);
-//            logger.info("Found {} expenditures for department: {}", filteredExpenditures.size(), department);
-//            return filteredExpenditures;
-//        } else {
-//            logger.info("Fetching all expenditures");
-//            List<Expenditure> allExpenditures = expenditureRepository.findAll();
-//            logger.info("Found {} expenditures", allExpenditures.size());
-//            return allExpenditures;
-//        }
-//
-//    }
-
 
     @GetMapping("/expenditure")
     List<Expenditure> expenditureList(

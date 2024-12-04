@@ -1,8 +1,6 @@
 package com.gebms.gebmsbackend.controller;
 
-import com.gebms.gebmsbackend.model.Expenditure;
 import com.gebms.gebmsbackend.model.ExpenditureRequest;
-import com.gebms.gebmsbackend.repository.ExpenditureRepository;
 import com.gebms.gebmsbackend.repository.ExpenditureRequestRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
