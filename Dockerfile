@@ -27,8 +27,8 @@ FROM openjdk:17-jdk-alpine
 
 WORKDIR /app
 
-COPY --from=builder /app/target/GEBMS-Backend-0.0.1-SNAPSHOT.jar GEBMS-Backend.jar
+COPY --from=builder /app .
 
 EXPOSE 4400
 
-ENTRYPOINT ["java", "-jar", "GEBMS-Backend.jar"]
+ENTRYPOINT ["java", "-jar", "target/GEBMS-Backend-0.0.1-SNAPSHOT.jar"]
