@@ -2,6 +2,7 @@ package com.gebms.gebmsbackend.service;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import java.nio.file.Files;
@@ -14,8 +15,9 @@ import java.util.Date;
 @Component
 public class JwtUtil {
     private PrivateKey loadPrivateKey(String path) throws Exception {
+        ClassPathResource resource = new ClassPathResource(path);
         // Read private key from PEM
-        String privateKeyPEM = new String(Files.readAllBytes(Paths.get(path)))
+        String privateKeyPEM = new String(Files.readAllBytes(resource.getFile().toPath()))
                 .replace("-----BEGIN PRIVATE KEY-----", "")
                 .replace("-----END PRIVATE KEY-----", "")
                 .replaceAll("\\s+", "");
@@ -27,7 +29,7 @@ public class JwtUtil {
 
     public String jwtTokenGenerator(String userEmail) {
         try {
-            PrivateKey privateKey = loadPrivateKey("src/main/resources/private_key.pem");
+            PrivateKey privateKey = loadPrivateKey("private_key.pem");
 
             return Jwts.builder()
                     .setSubject(userEmail)
